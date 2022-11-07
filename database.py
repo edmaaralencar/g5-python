@@ -6,7 +6,7 @@ def create_connection():
     sqliteConnection = None
     try:
         sqliteConnection = sqlite3.connect('SQLite_Python.db')
-        print('Database connected sucessfully.')
+        print('Banco de dados conectado com sucesso.')
     except sqlite3.Error as e:
         print(e)
     
