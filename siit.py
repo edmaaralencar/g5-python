@@ -155,7 +155,7 @@ def role_aleatorio():
     time.sleep(1)
     print(".\n")
     num_atracoes_alea=random.randint(1,len(atracoes))
-    roteiro_aleatorio = random.choices(atracoes,k=num_atracoes_alea)
+    roteiro_aleatorio = random.sample(atracoes,k=num_atracoes_alea)
     print("Roteiro Aleatório\n")
     for n, atracao in enumerate(roteiro_aleatorio):
         print(n+1,atracao['NOME'])
