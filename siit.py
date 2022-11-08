@@ -1,37 +1,39 @@
 from os import system
-system('cls')
+import time
+import random
 
+system('cls')
 atracao1 ={
     'ID':1,
     'NOME':"Restaurante Beiramar",
-    'DESCRICAO': "Melhores frutos do mar de Maceió",
+    'DESCRICAO': "Melhores frutos do mar de Maceió.",
     'TIPO':["alimentação"],
     'HORARIO': "dia"
 }
 atracao2 ={
     'ID':2,
     'NOME':"Praia do Sol",
-    'DESCRICAO': "Bela praia com piscinas naturais e passeios de bugre",
+    'DESCRICAO': "Bela praia com piscinas naturais e passeios de bugre.",
     'TIPO':["praia"],
     'HORARIO': ["dia"]
 }
 atracao3 ={
     'ID':3,
     'NOME':"Boate Love",
-    'DESCRICAO': "Melhor boate de Maceió",
+    'DESCRICAO': "Melhor boate de Maceió.",
     'TIPO':["balada"],
     'HORARIO': ["noite"]
 }
 atracao4 ={
     'ID':4,
     'NOME':"Feira de Artesanato",
-    'DESCRICAO': "Artesanato típico de Alagoas",
+    'DESCRICAO': "Artesanato típico de Alagoas.",
     'TIPO':["compras"],
     'HORARIO': ['noite','dia']}
 atracao5 ={
     'ID':5,
     'NOME':"Bar do Jangadeiro",
-    'DESCRICAO': "Jovens reunidos, cerveja gelada e ótimos petiscos",
+    'DESCRICAO': "Jovens reunidos, cerveja gelada e ótimos petiscos.",
     'TIPO':["alimentação", "balada"],
     'HORARIO': ['noite']
 }
@@ -67,20 +69,20 @@ menu = {
 }
 def menu_principal():
     system('cls')
+    siit()
     while True:
-        print("\nSI-IT\n")
         for key in menu.keys():
             print (key, '-', menu[key])
         opcao = int(input('\nDigite sua opção: '))
         if opcao == 0:
-            print("\nAté a próxima!")
+            credit()
             exit()
         elif opcao == 1:
             menu_roteiros()
         elif opcao == 2:
             menu_meu_roteiro()
         elif opcao == 3:
-            roteiro_aleatorio()
+            role_aleatorio()
         else:
             print("\nOpcão inválida")
             
@@ -94,6 +96,7 @@ def menu_roteiros():
         opcao = int(input('\nDigite sua opção: '))
         for roteiro in roteiros:
             if opcao == roteiro['ID']:
+                system('cls')
                 print(f"\n{roteiro['NOME']}\n")
                 for n, atracao in enumerate(roteiro['ATRACOES']):
                     print(n+1, atracao['NOME'])
@@ -118,11 +121,13 @@ def menu_meu_roteiro():
                     print(n+1,atracao['NOME'])
                     print("\t",atracao['DESCRICAO'],"\n")
         elif opcao== 2:
+            system('cls')
             print("\nAtrações\n")
             for atracao in atracoes:
                 print(atracao["ID"], "-", atracao["NOME"])
             print("0 - Voltar")
             opcao = int(input('\nDigite sua opção: '))
+            system('cls')
             print()
             for atracao in atracoes:
                 if opcao == atracao['ID']:
@@ -140,4 +145,86 @@ def menu_meu_roteiro():
             menu_principal()
         else:
             menu_meu_roteiro()
+
+def role_aleatorio():
+    system('cls')
+    time.sleep(1)
+    print(".\n")
+    time.sleep(1)
+    print(".\n")
+    time.sleep(1)
+    print(".\n")
+    num_atracoes_alea=random.randint(1,len(atracoes))
+    roteiro_aleatorio = random.choices(atracoes,k=num_atracoes_alea)
+    print("Roteiro Aleatório\n")
+    for n, atracao in enumerate(roteiro_aleatorio):
+        print(n+1,atracao['NOME'])
+        print("\t",atracao['DESCRICAO'],"\n")
+
+def siit():
+    print("""
+███████ ██       ██ ████████ 
+██      ██       ██    ██    
+███████ ██ █████ ██    ██    
+     ██ ██       ██    ██    
+███████ ██       ██    ██    
+ """)
+def credit():
+    system('cls')
+    print("""
+       @@@@@@   @@@                   @@@  @@@@@@@  
+      @@@@@@@   @@@                   @@@  @@@@@@@  
+      !@@       @@!                   @@!    @@!    
+      !@!       !@!                   !@!    !@!    
+      !!@@!!    !!@     @!@!@!@!@     !!@    @!!    
+       !!@!!!   !!!     !!!@!@!!!     !!!    !!!    
+           !:!  !!:                   !!:    !!:    
+          !:!   :!:                   :!:    :!:    
+      :::: ::    ::                    ::     ::    
+      :: : :    :                     :       :     
+    ╔═╗┌┐┌┌─┐  ╔╗ ┌─┐┌─┐┌┬┐┬─┐┬┌─┐  ╔═╗┬ ┬  ┬┌─┐┌─┐  
+    ╠═╣│││├─┤  ╠╩╗├┤ ├─┤ │ ├┬┘│┌─┘  ╠═╣│ └┐┌┘├┤ └─┐  
+    ╩ ╩┘└┘┴ ┴  ╚═╝└─┘┴ ┴ ┴ ┴└─┴└─┘  ╩ ╩┴─┘└┘ └─┘└─┘  
+    ╔═╗┌┐┌┌─┐  ╔╗ ┌─┐┌─┐┌┬┐┬─┐┬┌─┐  ╦═╗┌─┐┌─┐┬ ┬┌─┐  
+    ╠═╣│││├─┤  ╠╩╗├┤ ├─┤ │ ├┬┘│┌─┘  ╠╦╝│ ││  ├─┤├─┤  
+    ╩ ╩┘└┘┴ ┴  ╚═╝└─┘┴ ┴ ┴ ┴└─┴└─┘  ╩╚═└─┘└─┘┴ ┴┴ ┴  
+        ╔═╗┌─┐┬┌─┐  ╦  ╦┬┬  ┌─┐  ╔╗╔┌─┐┬  ┬┌─┐           
+        ║  ├─┤││ │  ╚╗╔╝││  ├─┤  ║║║│ │└┐┌┘├─┤           
+        ╚═╝┴ ┴┴└─┘   ╚╝ ┴┴─┘┴ ┴  ╝╚╝└─┘ └┘ ┴ ┴           
+     ╔═╗┬  ┌─┐┬─┐┌─┐  ╦ ╦┌─┐┌┐┌┌┬┐┌─┐┬─┐┬  ┌─┐┬ ┬     
+     ║  │  ├─┤├┬┘├─┤  ║║║├─┤│││ ││├┤ ├┬┘│  ├┤ └┬┘     
+     ╚═╝┴─┘┴ ┴┴└─┴ ┴  ╚╩╝┴ ┴┘└┘─┴┘└─┘┴└─┴─┘└─┘ ┴      
+           ╔═╗┌┬┐┌┬┐┌─┐┬─┐  ╦═╗┌─┐┌─┐┬ ┬┌─┐                 
+           ║╣  │││││├─┤├┬┘  ╠╦╝│ ││  ├─┤├─┤                 
+           ╚═╝─┴┘┴ ┴┴ ┴┴└─  ╩╚═└─┘└─┘┴ ┴┴ ┴                 
+    ╔═╗┬ ┬┬┬  ┬ ┬┌─┐┬─┐┌┬┐┌─┐  ╔═╗┬┬ ┬  ┬┌─┐┬┬─┐┌─┐  
+    ║ ╦│ │││  ├─┤├┤ ├┬┘│││├┤   ╚═╗││ └┐┌┘├┤ │├┬┘├─┤  
+    ╚═╝└─┘┴┴─┘┴ ┴└─┘┴└─┴ ┴└─┘  ╚═╝┴┴─┘└┘ └─┘┴┴└─┴ ┴  
+         ╔═╗┌─┐┌┬┐┬─┐┌─┐  ╔═╗┌─┐┌─┐┬  ┬ ┬┌─┐              
+         ╠═╝├┤  ││├┬┘│ │  ║  │ │├┤ │  ├─┤│ │              
+         ╩  └─┘─┴┘┴└─└─┘  ╚═╝└─┘└─┘┴─┘┴ ┴└─┘              
+           ╦═╗┬┌─┐┌─┐┬─┐┌┬┐┌─┐  ╦  ┬┌┬┐┌─┐                  
+           ╠╦╝││  ├─┤├┬┘ │││ │  ║  ││││├─┤                  
+           ╩╚═┴└─┘┴ ┴┴└──┴┘└─┘  ╩═╝┴┴ ┴┴ ┴                  
+     ╔═╗┌─┐┌─┐┬┌─┐  ╦  ╦┌─┐┬  ┌─┐┌┬┐┌─┐┬─┐┌─┐┌─┐      
+     ╚═╗│ │├┤ │├─┤  ╚╗╔╝├─┤│  ├─┤ ││├─┤├┬┘├┤ └─┐      
+     ╚═╝└─┘└  ┴┴ ┴   ╚╝ ┴ ┴┴─┘┴ ┴─┴┘┴ ┴┴└─└─┘└─┘      
+          ╦  ╦┬┬─┐┌┐┌┌─┐  ╔═╗┌┬┐┌─┐┬─┐┌─┐┬                 
+          ╚╗╔╝│├┬┘│││├─┤  ╠═╣│││├─┤├┬┘├─┤│                 
+           ╚╝ ┴┴└─┘└┘┴ ┴  ╩ ╩┴ ┴┴ ┴┴└─┴ ┴┴─┘               
+           
+ .d8888b      .d88b.      .d8888b       8888b.      888d888 
+d88P"        d8P  Y8b     88K              "88b     888P"   
+888          88888888     "Y8888b.     .d888888     888     
+Y88b.    d8b Y8b.     d8b      X88 d8b 888  888 d8b 888     
+ "Y8888P Y8P  "Y8888  Y8P  88888P' Y8P "Y888888 Y8P 888     
+ 
+                      888                       888 
+                      888                       888 
+    .d8888b   .d8888b 88888b.   .d88b.  .d88b.  888 
+    88K      d88P"    888 "88b d88""88bd88""88b 888 
+    "Y8888b. 888      888  888 888  888888  888 888 
+         X88 Y88b.    888  888 Y88..88PY88..88P 888 
+     88888P'  "Y8888P 888  888  "Y88P"  "Y88P"  888 
+ """)
 menu_principal()
