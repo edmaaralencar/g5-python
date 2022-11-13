@@ -58,12 +58,14 @@ roteiro3 = {
 
 roteiros=[roteiro1,roteiro2,roteiro3]
 
+meus_roteiros=[]
 meu_roteiro = []
+
 roteiro_aleatorio = []
 
 menu = {
     1: 'Roteiros',
-    2: 'Meu Roteiro',
+    2: 'Meus Roteiros',
     3: 'Roteiro Aleatório',
     0: 'Sair'
 }
@@ -107,20 +109,13 @@ def menu_roteiros():
 def menu_meu_roteiro():
     system('cls')
     while True:
-        opcao = int(input('\nMEU ROTEIRO\n\n'
-                            '1 - Ver meu roteiro\n'
-                            '2 - Mostrar atrações disponíveis\n'
+        opcao = int(input('\nMEUS ROTEIROS\n\n'
+                            '1 - Mostrar atrações disponíveis\n'
+                            '2 - Ver meu roteiro\n'
+                            '3 - Ver roteiros salvos\n'
                             '0 - Voltar\n'
                         '\nDigite sua opção: '))
-        if opcao == 1:
-            if len(meu_roteiro)==0:
-                print()
-                menu_meu_roteiro()
-            else:
-                for n, atracao in enumerate(meu_roteiro):
-                    print(n+1,atracao['NOME'])
-                    print("\t",atracao['DESCRICAO'],"\n")
-        elif opcao== 2:
+        if opcao== 1:
             system('cls')
             print("\nAtrações\n")
             for atracao in atracoes:
@@ -134,13 +129,80 @@ def menu_meu_roteiro():
                     print(atracao['ID'], atracao['NOME'])
                     print("\t",atracao['DESCRICAO'],"\n")
                     save = int(input("1 - Deseja adicionar esta atração ao seu roteiro?\n"
-                                    "0 - Voltar.\n"
-                                    "\nDigite sua opção: "))
+                                     "0 - Voltar.\n"
+                                     "\nDigite sua opção: "))
                     if save == 1:
                         meu_roteiro.append(atracao)
                         system('cls')
                     else:
                         menu_meu_roteiro()
+        elif opcao == 2:
+            if len(meu_roteiro)==0:
+                print("\n Não há atrações adicionadas ao seu roteiro")
+                time.sleep(1)
+                print(".\n")
+                time.sleep(1)
+                print(".\n")
+                menu_meu_roteiro()
+            else:
+                for n, atracao in enumerate(meu_roteiro):
+                    print(n+1,atracao['NOME'])
+                    print("\t",atracao['DESCRICAO'],"\n")
+
+                save_roteiro = int(input(print("1 - Salvar Roteiro\n"
+                                               "2 - Apagar Roteiro\n"
+                                               "0 - Voltar.\n"
+                                               "Digite sua opção: ")))
+                if save_roteiro == 1:
+                    id=0
+                    for roteiro in meus_roteiros:
+                        if roteiro['ID']>id:
+                                id=roteiro['ID']
+                    nome = input("Digite o nome do seu roteiro: ")
+                    meus_roteiros_dict = {"ID": id+1 ,
+                                          "NOME": nome,
+                                          "ATRACOES": meu_roteiro
+                                          }
+                    meus_roteiros.append(meus_roteiros_dict)
+                if save_roteiro == 2:
+                    meu_roteiro.clear()
+                else:
+                    menu_meu_roteiro()
+        elif opcao == 3:
+            if len(meu_roteiro)==0:
+                print("\nNão há roteiros salvos")
+                time.sleep(1)
+                print(".\n")
+                time.sleep(1)
+                print(".\n")
+                menu_meu_roteiro()
+            else:
+                system('cls')
+                while True:
+                    print("\nMEUS ROTEIROS\n")
+                    for roteiro in meus_roteiros:
+                        print(roteiro["ID"], "-", roteiro["NOME"])
+                    print("\n0 - Voltar")
+                    opcao = int(input('\nDigite sua opção: '))
+                    for roteiro in meus_roteiros:
+                        if opcao == roteiro['ID']:
+                            system('cls')
+                            print(f"\n{roteiro['NOME']}\n")
+                            for n, atracao in enumerate(roteiro['ATRACOES']):
+                                print(n+1, atracao['NOME'])
+                                print("\t",atracao['DESCRICAO'],"\n")
+                            del_roteiro=int(input("1 - Apagar roteiro\n"
+                                                  "0 - Voltar\n"
+                                                  "\nDigite sua opção: "))
+                            if del_roteiro == 1:
+                                roteiro.clear()
+                                system('cls')
+                                menu_meu_roteiro()
+                            else:
+                                menu_meu_roteiro()
+                        elif opcao == 0:
+                            system('cls')
+                            menu_meu_roteiro()
         elif opcao==0:
             menu_principal()
         else:
@@ -163,11 +225,11 @@ def role_aleatorio():
 
 def siit():
     print("""
-███████ ██       ██ ████████ 
-██      ██       ██    ██    
-███████ ██ █████ ██    ██    
-     ██ ██       ██    ██    
-███████ ██       ██    ██    
+███████ ██           ██ ████████ 
+██      ██           ██    ██    
+███████ ██   █████   ██    ██    
+     ██ ██           ██    ██    
+███████ ██           ██    ██    
  """)
 def credit():
     system('cls')
