@@ -46,12 +46,12 @@ def select_attractions(connection): #Função para ler os dados de atracoes e ex
 
     cursor.execute('SELECT * FROM atracoes')#Seleciona todos os dados da tabela atracoes
 
-    rows = cursor.fetchall()#???
+    rows = cursor.fetchall()#Retoma o resultado de SELECT em rows
 
     print("\n")
     print(tabulate(rows, headers=['ID', 'Nome', 'Descricao', 'Tipo', 'Horarios']))#Exibe uma tabela com os dados de atracoes
 
-def main():#????
+def main():#Função que conecta todas a funções e faz o sistema funcionar
     connection = create_connection()#Estabelece variavel connection que conecta o banco de dados
 
     with connection:#Com a conecção
