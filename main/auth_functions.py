@@ -1,20 +1,16 @@
 import random
 import sqlite3
 
-contas = [{"ID": "123", "Senha": "456", "Cliente": ["123", "Ana Alves", "987", "81998765432"]},
-    {"ID": "231", "Senha": "456", "Cliente": ["231", "Beatriz Ximenes", "879", "81987654321"]},
-    {"ID": "312", "Senha": "456", "Cliente": ["312", "Bixa Alves", "798", "81976543210"]}]
+# def create_connection():
+#   sqliteConnection = None
+#   try:
 
-def create_connection():
-  sqliteConnection = None
-  try:
-
-    sqliteConnection = sqlite3.connect('siit-database.db')
-    print('Banco de dados conectado com sucesso.')
-  except sqlite3.Error as e:
-    print(e)
+#     sqliteConnection = sqlite3.connect('siit-database.db')
+#     print('Banco de dados conectado com sucesso.')
+#   except sqlite3.Error as e:
+#     print(e)
     
-  return sqliteConnection
+#   return sqliteConnection
 
 def create_user(connection, id, senha, user_id, user_nome, user_cpf, user_num):
   cursor = connection.cursor()
@@ -49,12 +45,11 @@ def select_users(connection):
 
   return usuarios
 
-connection = create_connection()
+# connection = create_connection()
 
-contas = select_users(connection)
-print(contas)
+# contas = select_users(connection)
 
-def criar_conta():
+def criar_conta(contas, connection):
     cad_cpf = input("Insira seu CPF: ")
 
     list_cpf = []
@@ -89,9 +84,9 @@ def criar_conta():
 
         print(f"Seu ID de acesso é o {novo_id}, guarde-o, será por ele que acessos futuros serão feitos.")
 
-def acesso_conta():
-    acesso_ID = input("Insira seu ID de LogIn:\n")
-    acesso_Senha = input("Insira sua senha:\n")
+def acesso_conta(contas):
+    acesso_ID = input("Insira seu ID de LogIn: ")
+    acesso_Senha = input("Insira sua senha: ")
 
     veri = []
 
@@ -108,9 +103,11 @@ def acesso_conta():
             break
 
     if cont == 0:
-        print('Dados incorretos ou não encontrados.\nPor favor insira novamente ou realize novo cadastro.')
+        print('\nDados incorretos ou não encontrados.\nPor favor insira novamente ou realize novo cadastro.')
+        return False
     else:
-        print(f"Seja bem vindo {armazen[1]}!")      # falta fluxo de como armazenar o acesso
+        print(f"\nSeja bem vindo {armazen[1]}!")      # falta fluxo de como armazenar o acesso
+        return True
 
 def recuperar_conta():
     print("Etapa de Verificação.")
@@ -138,22 +135,20 @@ def recuperar_conta():
             cont += 1
             break
 
-def main():
+def main_autenticacao(contas):
     print("\t\t LOGIN\n",
         "Operações:\n",
         "1 - Criar Conta\n",
         "2 - Já possuo Conta\n",
         "3 - Esqueci meus dados de Login")
 
-    login_1 = int(input("Insira a operação desejada: "))
+    login_opcao = int(input("Insira a operação desejada: "))
 
-    if login_1 == 1:
-        criar_conta()
+    if login_opcao == 1:
+        criar_conta(contas)
 
-    elif login_1 == 2:
-        acesso_conta()
+    elif login_opcao == 2:
+        acesso_conta(contas)
 
-    elif login_1 ==3:
+    elif login_opcao ==3:
         recuperar_conta()
-
-main()
