@@ -128,7 +128,7 @@ def recuperar_conta():
 
     cont = 0
 
-    for pessoa in contas: #tá dando que não existe aqui
+    for pessoa in contas: # tá dando que não existe aqui
         cliente = pessoa['Cliente']
 
         if cont == 0:
