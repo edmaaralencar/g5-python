@@ -205,14 +205,6 @@ Resposta: """))
 
         escolhido = input("""Qual Roteiro deseja visualizar?""")
 
-        exportar = input("""Deseja exportar seu Roteiro?
-1 - Sim
-0 - Voltar
-Resposta: """)
-
-        if exportar == "1":
-            ex_rot = file.open(f"{meus_roteiros[escolhido]}")
-
     elif filtro == 0:
         break
     else:
