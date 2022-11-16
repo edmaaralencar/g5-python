@@ -116,7 +116,6 @@ def salvar():
 Resposta: """))
     return finalizar
 
-
 def int_db():
     conn = sqlite3.connect('main-database.db')
     cursor = conn.cursor()
@@ -162,7 +161,7 @@ def int_db():
 0 - Voltar
 Resposta: """)
 
-        if save == "1":
+        if save == "1":     # tem que ser atualizado para formatar a saída
             key = input("Insira o nome de seu roteiro: ")
             meus_roteiros[key] = roteiro
 
@@ -201,10 +200,12 @@ Resposta: """))
                 int_db()
     
     elif filtro == 4:
+        ### falta ordenar os roteiros
+        ## falta o fluxo de exportar
         print(f"Meus Roteiros: {meus_roteiros}")
 
         escolhido = input("""Qual Roteiro deseja visualizar?""")
-
+        
     elif filtro == 0:
         break
     else:
