@@ -36,7 +36,7 @@ def fil_tipos():
 3 - Família
 4 - Lazer
 0 - Voltar
-    """)
+""")
     tipo.append(input("Insira os tipos desejados [1] [2] [3] ou [4]: ").split())
     filtroTipoAtt[0] = tipo
     return filtroTipoAtt
@@ -97,7 +97,7 @@ while filtro != 0:
         adicionar = int(input("""Deseja adicionar algum passeio ao seu roteiro?
 1 - Sim
 2 - Não
-    """))
+"""))
         if adicionar == 1:
             add()
             print(ids)
@@ -108,7 +108,9 @@ while filtro != 0:
     elif filtro == 0:
         break
     else:
-        print("\nComonado não disponível. Favor insira [1] [2] [3] ou [0].\n")
+        print("\nComando não disponível. Favor insira [1] [2] [3] ou [0].\n")
+        time.sleep(1)
+        print(".\n")
         time.sleep(1)
         print(".\n")
 
