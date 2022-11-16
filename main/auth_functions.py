@@ -1,5 +1,7 @@
 import random
 import sqlite3
+from credits_functions import siit, credit
+from os import system
 
 # def create_connection():
 #   sqliteConnection = None
@@ -85,8 +87,8 @@ def criar_conta(contas, connection):
         print(f"Seu ID de acesso é o {novo_id}, guarde-o, será por ele que acessos futuros serão feitos.")
 
 def acesso_conta(contas):
-    acesso_ID = input("Insira seu ID de LogIn: ")
-    acesso_Senha = input("Insira sua senha: ")
+    acesso_ID = input("\nID: ")
+    acesso_Senha = input("SENHA: ")
 
     veri = []
 
@@ -106,7 +108,10 @@ def acesso_conta(contas):
         print('\nDados incorretos ou não encontrados.\nPor favor insira novamente ou realize novo cadastro.')
         return False
     else:
-        print(f"\nSeja bem vindo {armazen[1]}!")      # falta fluxo de como armazenar o acesso
+
+        system('cls')
+        siit()
+        print(f"\nSeja bem vinde {armazen[1]}!")
         return True
 
 def recuperar_conta():
@@ -123,7 +128,7 @@ def recuperar_conta():
 
     cont = 0
 
-    for pessoa in contas:
+    for pessoa in contas: #tá dando que não existe aqui
         cliente = pessoa['Cliente']
 
         if cont == 0:
@@ -136,13 +141,12 @@ def recuperar_conta():
             break
 
 def main_autenticacao(contas):
-    print("\t\t LOGIN\n",
-        "Operações:\n",
-        "1 - Criar Conta\n",
-        "2 - Já possuo Conta\n",
-        "3 - Esqueci meus dados de Login")
-
-    login_opcao = int(input("Insira a operação desejada: "))
+    print("\nLOGIN\n",
+        "1 - Entrar\n",
+        "2 - Criar nova conta\n",
+        "3 - Esqueci minha senha ou ID" ##  DEAD END, CADÊ CODIGO?
+        "\n 0 - Sair")
+    login_opcao = int(input("Digite sua opção: "))
 
     if login_opcao == 1:
         criar_conta(contas)

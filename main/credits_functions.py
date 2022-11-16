@@ -9,7 +9,7 @@ def siit():
 ███████ ██       ██    ██    
  """)
 def credit():
-    system('clear')
+    system('cls')
     print("""
        @@@@@@   @@@                   @@@  @@@@@@@  
       @@@@@@@   @@@                   @@@  @@@@@@@  
